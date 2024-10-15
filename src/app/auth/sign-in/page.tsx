@@ -21,12 +21,12 @@ export default function Login({ searchParams }: { searchParams: Message }) {
 					<form id='login-form' className='grid gap-4'>
 						<div className='grid gap-2'>
 							<Label htmlFor='email'>Email</Label>
-							<Input id='email' name='email' type='email' placeholder='m@example.com' required />
+							<Input id='email' name='email' type='email' placeholder='email@example.com' required />
 						</div>
 						<div className='grid gap-2'>
 							<div className='flex justify-between items-center'>
 								<Label htmlFor='password'>Password</Label>
-								<Link className='text-xs text-foreground underline' href='/forgot-password'>
+								<Link className='text-xs text-foreground underline' href='/auth/forgot-password'>
 									Forgot Password?
 								</Link>
 							</div>
