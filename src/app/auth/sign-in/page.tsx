@@ -7,7 +7,7 @@ import { Input } from '@/components/ui/input'
 
 import { FormMessage, Message } from '@/components/form-message'
 
-import { signInAction } from '@/app/auth-actions'
+import { signInAction } from '@/app/auth/actions'
 
 export default function Login({ searchParams }: { searchParams: Message }) {
 	return (
