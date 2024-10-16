@@ -1,22 +1,42 @@
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import { SubmitButton } from '@/components/submit-button'
 
 import { FormMessage, Message } from '@/components/form-message'
-import { SubmitButton } from '@/components/submit-button'
 
 import { resetPasswordAction } from '@/app/auth/actions'
 
 export default async function ResetPassword({ searchParams }: { searchParams: Message }) {
 	return (
-		<form className='flex flex-col w-full max-w-md p-4 gap-2 [&>input]:mb-4'>
-			<h1 className='text-2xl font-medium'>Reset password</h1>
-			<p className='text-sm text-foreground/60'>Please enter your new password below.</p>
-			<Label htmlFor='password'>New password</Label>
-			<Input type='password' name='password' placeholder='New password' required />
-			<Label htmlFor='confirmPassword'>Confirm password</Label>
-			<Input type='password' name='confirmPassword' placeholder='Confirm password' required />
-			<SubmitButton formAction={resetPasswordAction}>Reset password</SubmitButton>
-			<FormMessage message={searchParams} />
-		</form>
+		<section className='h-[calc(100vh-57px)] flex justify-center items-center'>
+			<Card className='mx-auto w-full md:w-[340px]'>
+				<CardHeader>
+					<CardTitle className='text-2xl'>Reset password</CardTitle>
+					<CardDescription>Please enter your new password below.</CardDescription>
+				</CardHeader>
+				<CardContent className='flex flex-col gap-4'>
+					<form id='login-form' className='grid gap-4'>
+						<div className='grid gap-2'>
+							<Label htmlFor='password'>New Password</Label>
+							<Input minLength={6} name='password' id='password' type='password' placeholder='New password' required />
+						</div>
+						<div className='grid gap-2'>
+							<Label htmlFor='password'>Confirm Password</Label>
+							<Input
+								minLength={6}
+								type='password'
+								id='confirmPassword'
+								name='confirmPassword'
+								placeholder='Confirm password'
+								required
+							/>
+						</div>
+						<SubmitButton formAction={resetPasswordAction}>Reset password</SubmitButton>
+						<FormMessage message={searchParams} />
+					</form>
+				</CardContent>
+			</Card>
+		</section>
 	)
 }

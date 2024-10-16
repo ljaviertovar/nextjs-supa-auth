@@ -15,7 +15,7 @@ export default function Login({ searchParams }: { searchParams: Message }) {
 			<Card className='mx-auto w-full md:w-[340px]'>
 				<CardHeader>
 					<CardTitle className='text-2xl'>Login</CardTitle>
-					<CardDescription>Enter your email below to login to your account</CardDescription>
+					<CardDescription>Enter your email below to login to your account.</CardDescription>
 				</CardHeader>
 				<CardContent className='flex flex-col gap-4'>
 					<form id='login-form' className='grid gap-4'>
