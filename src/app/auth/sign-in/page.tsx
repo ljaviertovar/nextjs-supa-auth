@@ -30,7 +30,7 @@ export default function Login({ searchParams }: { searchParams: Message }) {
 									Forgot Password?
 								</Link>
 							</div>
-							<Input minLength={6} name='password' id='password' type='password' required />
+							<Input minLength={6} name='password' id='password' type='password' placeholder='Your password' required />
 						</div>
 						<SubmitButton pendingText='Signing In...' formAction={signInAction}>
 							Sign in
@@ -40,7 +40,7 @@ export default function Login({ searchParams }: { searchParams: Message }) {
 					{/* <OAuthButtons /> */}
 					<p className='text-sm text-foreground text-center'>
 						Don't have an account?{' '}
-						<Link className='text-foreground font-medium underline' href='/sign-up'>
+						<Link className='text-foreground font-medium underline' href='/auth/sign-up'>
 							Sign up
 						</Link>
 					</p>

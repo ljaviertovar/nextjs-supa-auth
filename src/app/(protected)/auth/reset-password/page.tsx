@@ -16,19 +16,18 @@ export default async function ResetPassword({ searchParams }: { searchParams: Me
 					<CardDescription>Please enter your new password below.</CardDescription>
 				</CardHeader>
 				<CardContent className='flex flex-col gap-4'>
-					<form id='login-form' className='grid gap-4'>
+					<form id='reset-password-form' className='grid gap-4'>
 						<div className='grid gap-2'>
-							<Label htmlFor='password'>New Password</Label>
-							<Input minLength={6} name='password' id='password' type='password' placeholder='New password' required />
+							<Label htmlFor='password'>New password</Label>
+							<Input type='password' name='password' placeholder='Your new password' minLength={6} required />
 						</div>
 						<div className='grid gap-2'>
-							<Label htmlFor='password'>Confirm Password</Label>
+							<Label htmlFor='confirmPassword'>Confirm password</Label>
 							<Input
-								minLength={6}
 								type='password'
-								id='confirmPassword'
 								name='confirmPassword'
-								placeholder='Confirm password'
+								placeholder='Confirm your password'
+								minLength={6}
 								required
 							/>
 						</div>

@@ -3,9 +3,9 @@ export type Message = { success: string } | { error: string } | { message: strin
 export function FormMessage({ message }: { message: Message }) {
 	return (
 		<div className='flex flex-col gap-2 w-full max-w-md text-sm'>
-			{'success' in message && <div className='text border-l-2 border px-4'>{message.success}</div>}
+			{'success' in message && <div className='text-green-500 border-l-2 border-green-500 px-4'>{message.success}</div>}
 			{'error' in message && <div className='text-destructive border-l-2 border-destructive px-4'>{message.error}</div>}
-			{'message' in message && <div className='text border-l-2 px-4'>{message.message}</div>}
+			{'message' in message && <div className='text-blue-500 border-l-2 border-blue-500 px-4'>{message.message}</div>}
 		</div>
 	)
 }

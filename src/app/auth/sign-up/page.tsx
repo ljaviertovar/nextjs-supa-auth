@@ -26,20 +26,20 @@ export default function Signup({ searchParams }: { searchParams: Message }) {
 					<form id='login-form' className='grid gap-4'>
 						<div className='grid gap-2'>
 							<Label htmlFor='email'>Email</Label>
-							<Input id='email' name='email' type='email' placeholder='m@example.com' required />
+							<Input id='email' name='email' type='email' placeholder='email@example.com' required />
 						</div>
 						<div className='grid gap-2'>
 							<Label htmlFor='password'>Password</Label>
 							<Input type='password' name='password' placeholder='Your password' minLength={6} required />
 						</div>
-						<SubmitButton pendingText='Signing In...' formAction={signUpAction}>
+						<SubmitButton pendingText='Signing Up...' formAction={signUpAction}>
 							Sign up
 						</SubmitButton>
 						<FormMessage message={searchParams} />
 					</form>
 					<p className='text-sm text-foreground text-center'>
 						Already have an account?{' '}
-						<Link href='/sign-in' className='text-foreground font-medium underline'>
+						<Link href='/auth/sign-in' className='text-foreground font-medium underline'>
 							Sign in
 						</Link>
 					</p>
