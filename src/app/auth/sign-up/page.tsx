@@ -1,19 +1,24 @@
-import { signUpAction } from '@/app/auth/actions'
-import { FormMessage, Message } from '@/components/form-message'
-import { SubmitButton } from '@/components/submit-button'
+import Link from 'next/link'
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import Link from 'next/link'
 
-export default function Signup({ searchParams }: { searchParams: Message }) {
-	if ('message' in searchParams) {
-		return (
-			<div className='w-full flex-1 flex items-center h-screen sm:max-w-md justify-center gap-2 p-4'>
-				<FormMessage message={searchParams} />
-			</div>
-		)
+import { SubmitButton } from '@/components/submit-button'
+import { FormMessage, Message } from '@/components/form-message'
+
+import { signUpAction } from '@/app/auth/actions'
+import { isLogged } from '@/utils/helpers'
+
+interface Props {
+	searchParams: {
+		message: Message
+		callbackUrl?: string
 	}
+}
+
+export default async function SignUpPage({ searchParams }: Props) {
+	await isLogged(searchParams.callbackUrl!)
 
 	return (
 		<section className='h-[calc(100vh-57px)] flex justify-center items-center'>
@@ -35,7 +40,7 @@ export default function Signup({ searchParams }: { searchParams: Message }) {
 						<SubmitButton pendingText='Signing Up...' formAction={signUpAction}>
 							Sign up
 						</SubmitButton>
-						<FormMessage message={searchParams} />
+						<FormMessage message={searchParams.message} />
 					</form>
 					<p className='text-sm text-foreground text-center'>
 						Already have an account?{' '}

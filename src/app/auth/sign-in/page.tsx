@@ -1,15 +1,25 @@
 import Link from 'next/link'
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { SubmitButton } from '@/components/submit-button'
 import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 
+import { SubmitButton } from '@/components/submit-button'
 import { FormMessage, Message } from '@/components/form-message'
 
 import { signInAction } from '@/app/auth/actions'
+import { isLogged } from '@/utils/helpers'
 
-export default function Login({ searchParams }: { searchParams: Message }) {
+interface Props {
+	searchParams: {
+		message: Message
+		callbackUrl?: string
+	}
+}
+
+export default async function SignInPage({ searchParams }: Props) {
+	await isLogged(searchParams.callbackUrl!)
+
 	return (
 		<section className='h-[calc(100vh-57px)] flex justify-center items-center'>
 			<Card className='mx-auto w-full md:w-[340px]'>
@@ -35,7 +45,7 @@ export default function Login({ searchParams }: { searchParams: Message }) {
 						<SubmitButton pendingText='Signing In...' formAction={signInAction}>
 							Sign in
 						</SubmitButton>
-						<FormMessage message={searchParams} />
+						<FormMessage message={searchParams.message} />
 					</form>
 					{/* <OAuthButtons /> */}
 					<p className='text-sm text-foreground text-center'>
