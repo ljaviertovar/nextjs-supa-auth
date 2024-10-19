@@ -45,3 +45,13 @@ export async function isLogged(callbackUrl: string) {
 		redirect(callbackUrl || '/')
 	}
 }
+
+export async function getUser() {
+	const supabase = createClient()
+
+	const {
+		data: { user },
+	} = await supabase.auth.getUser()
+
+	return user
+}
