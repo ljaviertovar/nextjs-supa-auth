@@ -1,7 +1,10 @@
 import Link from 'next/link'
 
-// import { Skeleton } from '@/components/ui/skeleton'
-import { Button } from '../ui/button'
+import { Button } from '@/components/ui/button'
+import { Skeleton } from '@/components/ui/skeleton'
+
+import { UserNav } from './user-nav'
+
 import useAuth from '@/hooks/use-auth'
 
 export default function AuthButtons() {
@@ -10,8 +13,7 @@ export default function AuthButtons() {
 	if (loading) {
 		return (
 			<div className='flex justify-end gap-4'>
-				{/* <Skeleton className='h-9 w-9 rounded-full' /> */}
-				Cargando
+				<Skeleton className='h-9 w-9 rounded-full' />
 			</div>
 		)
 	}
@@ -19,8 +21,7 @@ export default function AuthButtons() {
 	return (
 		<div className='flex justify-end gap-4'>
 			{userData ? (
-				// <UserNav user={user} />
-				<>aqui</>
+				<UserNav user={userData} />
 			) : (
 				<>
 					<Button asChild size={'sm'} variant={'secondary'}>

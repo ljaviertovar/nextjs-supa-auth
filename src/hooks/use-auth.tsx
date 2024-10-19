@@ -20,6 +20,7 @@ export default function useAuth() {
 
 		getUser()
 	}, [])
+	console.log(userData)
 
 	return { userData, loading }
 }

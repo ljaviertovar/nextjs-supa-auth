@@ -1,5 +1,4 @@
 import { redirect } from 'next/navigation'
-import { createClient } from '@/utils/supabase/server'
 
 /**
  * Redirects to a specified path with an encoded message as a query parameter.
@@ -32,26 +31,4 @@ export const getURL = (path: string = '') => {
 
 	// Concatenate the URL and the path.
 	return path ? `${url}/${path}` : url
-}
-
-export async function isLogged(callbackUrl: string) {
-	const supabase = createClient()
-
-	const {
-		data: { session },
-	} = await supabase.auth.getSession()
-
-	if (session && session.user) {
-		redirect(callbackUrl || '/')
-	}
-}
-
-export async function getUser() {
-	const supabase = createClient()
-
-	const {
-		data: { user },
-	} = await supabase.auth.getUser()
-
-	return user
 }
