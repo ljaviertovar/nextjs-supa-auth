@@ -12,12 +12,12 @@ import { isLogged } from '@/utils/auth'
 
 interface Props {
 	searchParams: {
-		message: Message
 		callbackUrl?: string
 	}
 }
 
 export default async function SignUpPage({ searchParams }: Props) {
+	console.log(searchParams)
 	await isLogged(searchParams.callbackUrl!)
 
 	return (
@@ -40,7 +40,7 @@ export default async function SignUpPage({ searchParams }: Props) {
 						<SubmitButton pendingText='Signing Up...' formAction={signUpAction}>
 							Sign up
 						</SubmitButton>
-						<FormMessage message={searchParams.message} />
+						<FormMessage message={searchParams as Message} />
 					</form>
 					<p className='text-sm text-foreground text-center'>
 						Already have an account?{' '}

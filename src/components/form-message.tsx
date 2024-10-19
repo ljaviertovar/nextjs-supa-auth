@@ -1,6 +1,10 @@
 export type Message = { success: string } | { error: string } | { message: string }
 
-export function FormMessage({ message }: { message: Message }) {
+interface Props {
+	message: Message
+}
+
+export function FormMessage({ message }: Props) {
 	console.log(message)
 	if (!message) return null
 

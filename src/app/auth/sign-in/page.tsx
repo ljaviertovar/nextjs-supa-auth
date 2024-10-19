@@ -12,7 +12,6 @@ import { isLogged } from '@/utils/auth'
 
 interface Props {
 	searchParams: {
-		message: Message
 		callbackUrl?: string
 	}
 }
@@ -45,7 +44,7 @@ export default async function SignInPage({ searchParams }: Props) {
 						<SubmitButton pendingText='Signing In...' formAction={signInAction}>
 							Sign in
 						</SubmitButton>
-						<FormMessage message={searchParams.message} />
+						<FormMessage message={searchParams as Message} />
 					</form>
 					{/* <OAuthButtons /> */}
 					<p className='text-sm text-foreground text-center'>
