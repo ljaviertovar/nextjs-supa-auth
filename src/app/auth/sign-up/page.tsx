@@ -8,7 +8,7 @@ import { SubmitButton } from '@/components/submit-button'
 import { FormMessage, Message } from '@/components/form-message'
 
 import { signUpAction } from '@/app/auth/actions'
-import { isLogged } from '@/utils'
+import { isLogged } from '@/utils/auth'
 
 interface Props {
 	searchParams: {

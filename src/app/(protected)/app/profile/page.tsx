@@ -2,7 +2,6 @@ import { getUser } from '@/utils/auth'
 
 export default async function ProfilePage() {
 	const user = await getUser()
-	console.log({ user })
 
 	return (
 		<section className='mx-auto flex max-w-[980px] flex-col items-center gap-2 py-8 md:py-12 md:pb-8 lg:py-24 lg:pb-20'>
@@ -16,13 +15,11 @@ export default async function ProfilePage() {
 				Manage your profile settings and preferences.
 			</span>
 
-			<div className='flex items-center justify-center'>
-				<div className=' grid grid-cols-2 mt-9'>
-					<p>Name:</p>
-					<p>{user?.user_metadata?.name ?? user?.user_metadata?.username}</p>
-					<p>Email:</p>
-					<p>{user?.user_metadata?.email}</p>
-				</div>
+			<div className='flex flex-col gap-2 items-start'>
+				<h2 className='font-bold text-2xl mb-4'>Your user details</h2>
+				<pre className='text-xs font-mono p-3 rounded border max-h-72 overflow-auto'>
+					{JSON.stringify(user, null, 2)}
+				</pre>
 			</div>
 		</section>
 	)

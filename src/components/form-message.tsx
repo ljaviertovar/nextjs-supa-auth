@@ -2,6 +2,8 @@ export type Message = { success: string } | { error: string } | { message: strin
 
 export function FormMessage({ message }: { message: Message }) {
 	console.log(message)
+	if (!message) return null
+
 	return (
 		<div className='flex flex-col gap-2 w-full max-w-md text-sm'>
 			{'success' in message && <div className='text-green-500 border-l-2 border-green-500 px-4'>{message.success}</div>}

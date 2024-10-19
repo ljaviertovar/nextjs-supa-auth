@@ -1,9 +1,4 @@
-// export default async function Layout({ children }: { children: React.ReactNode }) {
-// 	return <div className='max-w-7xl flex flex-col gap-12 items-start'>{children}</div>
-// }
-
 import type { Metadata } from 'next'
-import './globals.css'
 
 export const metadata: Metadata = {
 	title: 'NextSupaAuth',
@@ -17,7 +12,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<>
-			<main className='flex flex-col items-center'>{children}</main>
+			<main>{children}</main>
 		</>
 	)
 }

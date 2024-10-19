@@ -15,7 +15,7 @@ export default function RootLayout({
 	return (
 		<>
 			<Header />
-			<main className='flex flex-col items-center'>{children}</main>
+			<main className='container mx-auto w-full max-w-7xl'>{children}</main>
 		</>
 	)
 }
