@@ -11,6 +11,7 @@ import { motion, useCycle } from 'framer-motion'
 import { NavItem } from '@/types'
 import { NAV_ITEMS } from '@/constants'
 import { useScrollPosition } from '@/hooks/use-scroll-position'
+import AuthButtons from './auth/auth-buttons'
 
 type MenuItemWithSubMenuProps = {
 	item: NavItem
@@ -78,7 +79,7 @@ export default function HeaderMobile() {
 			</motion.ul>
 
 			<div
-				className={`sticky top-0 z-50 transition-shadow w-full h-11
+				className={`sticky top-0 z-50 transition-shadow w-full h-11 px-2 lg:px-4
 					${
 						scrollPosition > 56
 							? 'bg-background/40 shadow bg-opacity-60 backdrop-blur-lg backdrop-filter border-b'
@@ -86,8 +87,11 @@ export default function HeaderMobile() {
 					}
 					`}
 			>
-				<div className=' absolute left-4 top-[10px] z-30'>
+				<div className=' absolute left-2 md:left-4 top-[10px] z-30'>
 					<Logo />
+				</div>
+				<div className=' absolute pointer-events-auto top-[4px] z-30 right-14'>
+					<AuthButtons />
 				</div>
 
 				<MenuToggle toggle={toggleOpen} />
@@ -97,7 +101,7 @@ export default function HeaderMobile() {
 }
 
 const MenuToggle = ({ toggle }: { toggle: any }) => (
-	<button onClick={toggle} className='pointer-events-auto absolute right-4 top-[10px] z-30'>
+	<button onClick={toggle} className='pointer-events-auto absolute right-2 md:right-4 top-[10px] z-30'>
 		<svg width='23' height='23' viewBox='0 0 23 23'>
 			<Path
 				variants={{

@@ -29,7 +29,7 @@ export default function AuthButtons() {
 					<Button asChild size={'sm'} variant={'secondary'}>
 						<Link href='/auth/sign-in'>Sign In</Link>
 					</Button>
-					<Button size={'sm'} asChild>
+					<Button size={'sm'} asChild className='hidden sm:flex'>
 						<Link href='/auth/sign-up'>Sign Up</Link>
 					</Button>
 				</>

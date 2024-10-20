@@ -17,7 +17,7 @@ export default function RootLayout({
 		<>
 			<Header />
 			<HeaderMobile />
-			<main className='flex flex-col items-center bg-red-300'>{children}</main>
+			<main className='flex flex-col items-center'>{children}</main>
 		</>
 	)
 }
