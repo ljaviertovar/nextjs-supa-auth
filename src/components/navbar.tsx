@@ -1,4 +1,5 @@
 import Link from 'next/link'
+
 import {
 	NavigationMenu,
 	NavigationMenuItem,
@@ -6,24 +7,21 @@ import {
 	NavigationMenuList,
 } from '@/components/ui/navigation-menu'
 
+import { NAV_ITEMS } from '@/constants'
+
 export default function Navbar() {
 	return (
 		<NavigationMenu>
 			<NavigationMenuList>
-				<NavigationMenuItem>
-					<Link href='/dashboard' legacyBehavior passHref>
-						<NavigationMenuLink className='font-medium text-muted-foreground transition-colors mx-2 hover:text-primary'>
-							Dashboard
-						</NavigationMenuLink>
-					</Link>
-				</NavigationMenuItem>
-				<NavigationMenuItem>
-					<Link href='/all-tools' legacyBehavior passHref>
-						<NavigationMenuLink className='font-medium text-muted-foreground transition-colors hover:text-primary'>
-							All tools
-						</NavigationMenuLink>
-					</Link>
-				</NavigationMenuItem>
+				{NAV_ITEMS.map((item, idx) => (
+					<NavigationMenuItem key={idx}>
+						<Link href={item.path} legacyBehavior passHref>
+							<NavigationMenuLink className='font-medium text-muted-foreground transition-colors mx-2 hover:text-primary'>
+								{item.label}
+							</NavigationMenuLink>
+						</Link>
+					</NavigationMenuItem>
+				))}
 			</NavigationMenuList>
 		</NavigationMenu>
 	)

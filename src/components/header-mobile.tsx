@@ -4,11 +4,13 @@ import { ReactNode, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
+import Logo from './logo'
+
 import { motion, useCycle } from 'framer-motion'
 
 import { NavItem } from '@/types'
-import { NAV_APP_ITEMS } from '@/constants'
-import Logo from '../logo'
+import { NAV_ITEMS } from '@/constants'
+import { useScrollPosition } from '@/hooks/use-scroll-position'
 
 type MenuItemWithSubMenuProps = {
 	item: NavItem
@@ -34,11 +36,13 @@ const sidebar = {
 	},
 }
 
-export default function AppHeaderMobile() {
+export default function HeaderMobile() {
 	const pathname = usePathname()
 	const containerRef = useRef(null)
 	const { height } = useDimensions(containerRef)
 	const [isOpen, toggleOpen] = useCycle(false, true)
+
+	const scrollPosition = useScrollPosition()
 
 	return (
 		<motion.nav
@@ -50,7 +54,7 @@ export default function AppHeaderMobile() {
 		>
 			<motion.div className='absolute inset-0 right-0 w-full bg-background' variants={sidebar} />
 			<motion.ul variants={variants} className='absolute grid w-full gap-3 px-10 py-16 max-h-screen overflow-y-auto'>
-				{NAV_APP_ITEMS.map((item, idx) => {
+				{NAV_ITEMS.map((item, idx) => {
 					return (
 						<div key={idx}>
 							{item.submenu ? (
@@ -64,7 +68,7 @@ export default function AppHeaderMobile() {
 											item.path === pathname ? 'font-bold' : ''
 										}`}
 									>
-										{item.title}
+										{item.label}
 									</Link>
 								</MenuItem>
 							)}
@@ -73,17 +77,27 @@ export default function AppHeaderMobile() {
 				})}
 			</motion.ul>
 
-			<div className=' absolute left-4 top-[14px] z-30'>
-				<Logo />
-			</div>
+			<div
+				className={`sticky top-0 z-50 transition-shadow w-full h-11
+					${
+						scrollPosition > 56
+							? 'bg-background/40 shadow bg-opacity-60 backdrop-blur-lg backdrop-filter border-b'
+							: 'bg-trasparent shadow-none'
+					}
+					`}
+			>
+				<div className=' absolute left-4 top-[10px] z-30'>
+					<Logo />
+				</div>
 
-			<MenuToggle toggle={toggleOpen} />
+				<MenuToggle toggle={toggleOpen} />
+			</div>
 		</motion.nav>
 	)
 }
 
 const MenuToggle = ({ toggle }: { toggle: any }) => (
-	<button onClick={toggle} className='pointer-events-auto absolute right-4 top-[14px] z-30'>
+	<button onClick={toggle} className='pointer-events-auto absolute right-4 top-[10px] z-30'>
 		<svg width='23' height='23' viewBox='0 0 23 23'>
 			<Path
 				variants={{
@@ -130,7 +144,7 @@ const MenuItemWithSubMenu: React.FC<MenuItemWithSubMenuProps> = ({ item, toggleO
 			<MenuItem>
 				<button className='flex w-full text-2xl' onClick={() => setSubMenuOpen(!subMenuOpen)}>
 					<div className='flex flex-row justify-between w-full items-center'>
-						<span className={`${pathname.includes(item.path) ? 'font-bold' : ''}`}>{item.title}</span>
+						<span className={`${pathname.includes(item.path) ? 'font-bold' : ''}`}>{item.label}</span>
 						{/* <div className={`${subMenuOpen && 'rotate-180'}`}>
               <Icon icon="lucide:chevron-down" width="24" height="24" />
             </div> */}
@@ -148,7 +162,7 @@ const MenuItemWithSubMenu: React.FC<MenuItemWithSubMenuProps> = ({ item, toggleO
 										onClick={() => toggleOpen()}
 										className={` ${subItem.path === pathname ? 'font-bold' : ''}`}
 									>
-										{subItem.title}
+										{subItem.label}
 									</Link>
 								</MenuItem>
 							)

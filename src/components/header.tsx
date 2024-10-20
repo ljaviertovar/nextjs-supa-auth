@@ -1,12 +1,11 @@
 'use client'
 
-import Link from 'next/link'
+import Logo from '@/components/logo'
+import Navbar from '@/components/navbar'
 
 import AuthButtons from './auth/auth-buttons'
 
 import { useScrollPosition } from '@/hooks/use-scroll-position'
-import Logo from './logo'
-// import Navbar from './navbar'
 
 export default function Header() {
 	const scrollPosition = useScrollPosition()
@@ -21,11 +20,14 @@ export default function Header() {
 	}
   `}
 		>
-			<div className='hidden container mx-auto max-w-7xl lg:flex h-14 justify-between items-center'>
+			<div className='hidden container mx-auto max-w-7xl px-2 lg:px-4 lg:flex h-14 justify-between items-center'>
 				<div className='flex items-center gap-4'>
 					<Logo />
 
-					<div className='flex  w-full justify-center'>{/* <Navbar /> */}</div>
+					<div className='flex  w-full justify-center'>
+						{' '}
+						<Navbar />
+					</div>
 				</div>
 
 				<div className='flex-1'>

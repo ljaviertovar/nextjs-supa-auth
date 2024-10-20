@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 
 import AppHeader from '@/components/app/header'
-import AppHeaderMobile from '@/components/app/header-mobile'
 
 export const metadata: Metadata = {
 	title: 'NextSupaAuth',
@@ -16,8 +15,7 @@ export default function RootLayout({
 	return (
 		<>
 			<AppHeader />
-			<AppHeaderMobile />
-			<main className='container mx-auto w-full max-w-7xl'>{children}</main>
+			<main className='container mx-auto w-full max-w-7xl px-2 lg:px-4'>{children}</main>
 		</>
 	)
 }

@@ -1,6 +1,6 @@
 export type NavItem = {
 	onlySideNavItem?: boolean
-	title: string
+	label: string
 	path: string
 	icon: JSX.Element | null
 	submenu?: boolean

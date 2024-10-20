@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 
 import Header from '@/components/header'
+import HeaderMobile from '@/components/header-mobile'
 
 export const metadata: Metadata = {
 	title: 'NextSupaAuth',
@@ -15,7 +16,8 @@ export default function RootLayout({
 	return (
 		<>
 			<Header />
-			<main className='flex flex-col items-center'>{children}</main>
+			<HeaderMobile />
+			<main className='flex flex-col items-center bg-red-300'>{children}</main>
 		</>
 	)
 }
