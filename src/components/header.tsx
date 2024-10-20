@@ -1,35 +1,37 @@
-import { signOut } from '@/app/login/actions'
-import { Button } from '@/components/ui/button'
-import { createClient } from '@/utils/supabase/server'
-import Link from 'next/link'
+'use client'
 
-export default async function Header() {
-	const supabase = await createClient()
+import Logo from '@/components/logo'
+import Navbar from '@/components/navbar'
 
-	const {
-		data: { user },
-	} = await supabase.auth.getUser()
+import AuthButtons from './auth/auth-buttons'
+
+import { useScrollPosition } from '@/hooks/use-scroll-position'
+
+export default function Header() {
+	const scrollPosition = useScrollPosition()
 
 	return (
-		<header className='z-10 sticky top-0 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60'>
-			<div className='container flex h-14 max-w-screen-2xl items-center'>
-				<nav className='flex items-center space-x-4 lg:space-x-6'>
-					<a className='mr-6 flex items-center space-x-2' href='/'>
-						<span className='font-bold'>SupaTodo</span>
-					</a>
-					<Link href='/todos'>Todos</Link>
-				</nav>
-				<div className='flex flex-1 items-center justify-end space-x-2'>
-					{user !== null ? (
-						<form action={signOut} className='flex items-center gap-2'>
-							<p>{user.email}</p>
-							<Button>Sign Out</Button>
-						</form>
-					) : (
-						<Button asChild>
-							<Link href='/login'>Sign In</Link>
-						</Button>
-					)}
+		<header
+			className={`sticky top-0 z-50 transition-shadow w-full
+  ${
+		scrollPosition > 56
+			? 'bg-background/40 shadow bg-opacity-60 backdrop-blur-lg backdrop-filter border-b'
+			: 'bg-trasparent shadow-none'
+	}
+  `}
+		>
+			<div className='hidden container mx-auto max-w-7xl px-2 lg:px-4 lg:flex h-14 justify-between items-center'>
+				<div className='flex items-center gap-4'>
+					<Logo />
+
+					<div className='flex  w-full justify-center'>
+						{' '}
+						<Navbar />
+					</div>
+				</div>
+
+				<div className='flex-1'>
+					<AuthButtons />
 				</div>
 			</div>
 		</header>
